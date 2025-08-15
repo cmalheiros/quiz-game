@@ -1,1 +1,57 @@
-# quiz-game
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ta muito frio igual critiano rona. larilara</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div id="start-screen" class="screen">
+            <h1>Quizinho para distrair, bora?</h1>
+            <p>welcome! Digite seu nome e escolha um tema para começar.</p>
+            <input type="text" id="username" placeholder="Seu nome">
+            <div class="theme-selection">
+                <!-- <button class="theme-button" data-theme="historia">História</button> -->
+                <button class="theme-button" data-theme="historia_africa">História da África</button>
+                <button class="theme-button" data-theme="historia_america1">História da América 1</button>
+                <button class="theme-button" data-theme="historia_brasil1">História do Brasil 1</button>
+                <button class="theme-button" data-theme="geohistoria">Geohistória</button>
+                <!-- <button class="theme-button" data-theme="ciencias">Ciências</button> -->
+                <button class="theme-button" data-theme="geografia">Geografia</button>
+                <button class="theme-button" data-theme="conhecimentos_gerais">Conhecimentos Gerais</button>
+                <button class="theme-button" data-theme="biologia_celular">Biologia Celular</button>
+                <button class="theme-button" data-theme="zoologia">Zoologia</button>
+                <button class="theme-button" data-theme="fundamentos_da_educacao">Fundamentos da Educação</button>
+            </div>
+        </div>
+
+        <div id="quiz-screen" class="screen hidden">
+            <div class="header">
+                <div id="user-info"></div>
+                <div id="score">Pontuação: 0</div>
+            </div>
+            <div id="timer-container">
+                Tempo: <span id="timer"></span>s
+            </div>
+            <div class="quiz-box">
+                <div id="question-text"></div>
+                <div id="answers-container" class="answers"></div>
+            </div>
+            <div id="feedback-container"></div>
+            <button id="next-button" class="hidden">Próxima Pergunta</button>
+        </div>
+
+        <div id="end-screen" class="screen hidden">
+            <h1>Fim do Quiz!</h1>
+            <p>Parabéns, <span id="final-username"></span>!</p>
+            <p>Sua pontuação final foi: <span id="final-score"></span></p>
+            <button id="restart-button">Jogar Novamente</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
