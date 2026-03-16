@@ -155,7 +155,7 @@ const quizQuestions = {
             answers: ["Joan Scott", "Simone de Beauvoir", "Michel Foucault", "Hayden White"],
             correct: "Joan Scott",
             explanation: "Definiu gênero como uma forma primária de significar relações de poder.",
-            source: "https://edisciplinas.usp.br/pluginfile.php/185058/mod_resource/content/1/Joan%20Scott%20G%C3%AAnero%20Uma%20categoria%20%C3%BAtil%20de%20an%C3%A1lise%20hist%C3%B3rica.pdf"
+            source: "https://repositorio.sistemas.mpba.mp.br/xmlui/bitstream/handle/123456789/524/G%C3%AAnero_uma%20categoria%20%C3%BAtil%20para%20an%C3%A1lise%20hist%C3%B3rica%20-%20Joan%20Scott%2C%202016%20.pdf?sequence=1&isAllowed=y"
         },
         {
             question: "A 'Nova História Cultural' aproxima a História de qual disciplina?",
