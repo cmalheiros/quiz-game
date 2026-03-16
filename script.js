@@ -112,7 +112,7 @@ const quizQuestions = {
             answers: ["Cultura popular", "Documentos oficiais e elites políticas", "Economia camponesa", "Psicanálise histórica"],
             correct: "Documentos oficiais e elites políticas",
             explanation: "Buscava a 'verdade' através de fontes escritas oficiais do Estado.",
-            source: "https://brasilescola.uol.com.br/historia/o-positivismo-historia.htm"
+            source: "https://drive.google.com/file/d/14A7s1vKV5dPiBbSy9RubRdgkEdINZB7O/view?usp=sharing"
         },
         {
             question: "Qual escola rompeu com a história factual em 1929?",
@@ -133,7 +133,7 @@ const quizQuestions = {
             answers: ["Carlo Ginzburg", "Antonio Gramsci", "Umberto Eco", "Lévi-Strauss"],
             correct: "Carlo Ginzburg",
             explanation: "Em 'O Queijo e os Vermes', analisou a visão de mundo de um moleiro do século XVI.",
-            source: "https://revistahistoria.uff.br/index.php/historia/article/view/52"
+            source: "https://drive.google.com/file/d/10McVl1HlgXaitvXJlPjG4J-SpMrAOVKV/view?usp=sharing"
         },
         {
             question: "Para o Marxismo, a base da sociedade (Infraestrutura) é:",
