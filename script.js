@@ -39,7 +39,7 @@ const quizQuestions = {
             answers: ["França", "Estados Unidos", "Inglaterra", "Paraguai"],
             correct: "Inglaterra",
             explanation: "Foi um incidente diplomático causado por pressões inglesas sobre o tráfico negreiro e soberania brasileira.",
-            source: "https://brasilescola.uol.com.br/historiab/questao-christie.htm"
+            source: "https://drive.google.com/file/d/1vuexpqoxvStnBBu5l2a-rLcdN8lrwsGl/view?usp=sharing"
         },
         {
             question: "O movimento de Canudos (1896-1897) foi liderado por:",
@@ -60,7 +60,7 @@ const quizQuestions = {
             answers: ["Brasil Império", "República Velha", "Estado Novo", "Ditadura Militar"],
             correct: "República Velha",
             explanation: "Marcou a queda da hegemonia paulista e o início da Era Vargas.",
-            source: "https://mundoeducacao.uol.com.br/historiab/revolucao-1930.htm"
+            source: "https://brasilescola.uol.com.br/o-que-e/historia/o-que-foi-revolucao-1930.htm"
         },
         {
             question: "O que foi a 'Intentona Comunista' de 1935?",
@@ -88,7 +88,7 @@ const quizQuestions = {
             answers: ["Emenda Dante de Oliveira", "Emenda Lacerda", "Ato Adicional", "Constituição de 1988"],
             correct: "Emenda Dante de Oliveira",
             explanation: "Mobilizou milhões de brasileiros pelo voto direto para Presidente.",
-            source: "https://brasilescola.uol.com.br/historiab/diretas-ja.htm"
+            source: "https://infograficos.camara.leg.br/historia-e-fotos-da-campanha-diretas-ja-que-fez-40-anos/"
         },
         {
             question: "O Plano Real foi implementado sob a liderança de qual ministro?",
@@ -140,7 +140,7 @@ const quizQuestions = {
             answers: ["A religião", "A economia e os modos de produção", "As leis", "A filosofia"],
             correct: "A economia e os modos de produção",
             explanation: "As relações materiais determinam as formas de consciência e política (Superestrutura).",
-            source: "https://brasilescola.uol.com.br/filosofia/materialismo-historico.htm"
+            source: "https://cafecomsociologia.com/infraestrutura-e-superestrutura-em-marx/"
         },
         {
             question: "A 'História das Mentalidades' foi uma marca de qual geração dos Annales?",
