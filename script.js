@@ -105,7 +105,7 @@ const quizQuestions = {
             answers: ["Marc Bloch", "Fernand Braudel", "Michel Foucault", "Karl Marx"],
             correct: "Fernand Braudel",
             explanation: "Refere-se a estruturas geográficas ou mentais que mudam muito lentamente ao longo dos séculos.",
-            source: "https://pt.wikipedia.org/wiki/Fernand_Braudel"
+            source: "https://rima.ufrrj.br/jspui/bitstream/20.500.14407/13963/3/2022%20-%20Daniel%20Rodrigues%20da%20Silva%20Marques.Pdf"
         },
         {
             question: "O Positivismo Histórico de Ranke focava prioritariamente em:",
@@ -147,7 +147,8 @@ const quizQuestions = {
             answers: ["Primeira", "Segunda", "Terceira", "Quarta"],
             correct: "Terceira",
             explanation: "Focou nas percepções, imaginários e cotidiano das populações.",
-            source: "https://pt.wikipedia.org/wiki/Escola_dos_Annales"
+            source: "https://pt.wikipedia.org/wiki/Escola_dos_Annales",
+            source: "https://www.youtube.com/watch?v=hGA67lxUS_A&t=79s"
         },
         {
             question: "Quem defende que o 'Gênero' é uma categoria útil de análise histórica?",
