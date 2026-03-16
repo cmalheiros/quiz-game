@@ -162,7 +162,7 @@ const quizQuestions = {
             answers: ["Física", "Antropologia", "Matemática", "Economia Clássica"],
             correct: "Antropologia",
             explanation: "Usa conceitos como 'descrição densa' de Geertz para entender rituais e símbolos sociais.",
-            source: "https://revistahistoria.uff.br"
+            source: "https://www.webartigos.com/artigos/a-nova-historia-cultural/27489"
         },
         {
             question: "A obra 'A Sociedade Feudal' é um clássico de:",
