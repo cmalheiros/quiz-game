@@ -18,17 +18,18 @@
                 <button class="theme-button" data-theme="historia_africa">História da África</button>
                 <button class="theme-button" data-theme="historia_america1">História da América 1</button>
                 <button class="theme-button" data-theme="historia_brasil1">História do Brasil 1</button>
+                <button class="theme-button" data-theme="historia_brasil2">História do Brasil 2</button>
+                <button class="theme-button" data-theme="historiografia">Historiografia</button>
                 <button class="theme-button" data-theme="geohistoria">Geohistória</button>
                 <!-- <button class="theme-button" data-theme="ciencias">Ciências</button> -->
-                <button class="theme-button" data-theme="geografia">Geografia</button>
-                <button class="theme-button" data-theme="conhecimentos_gerais">Conhecimentos Gerais</button>
-                <button class="theme-button" data-theme="biologia_celular">Biologia Celular</button>
-                <button class="theme-button" data-theme="zoologia">Zoologia</button>
-                <button class="theme-button" data-theme="fundamentos_da_educacao">Fundamentos da Educação</button>
+                <!--button class="theme-button" data-theme="geografia">Geografia</button-->
+                <!--button class="theme-button" data-theme="conhecimentos_gerais">Conhecimentos Gerais</button -->
+                <!--button class="theme-button" data-theme="biologia_celular">Biologia Celular</button -->
+                <!--button class="theme-button" data-theme="zoologia">Zoologia</button -->
+                <!--button class="theme-button" data-theme="fundamentos_da_educacao">Fundamentos da Educação</button -->
             </div>
         </div>
-
-        <div id="quiz-screen" class="screen hidden">
+<div id="quiz-screen" class="screen hidden">
             <div class="header">
                 <div id="user-info"></div>
                 <div id="score">Pontuação: 0</div>
@@ -44,7 +45,7 @@
             <button id="next-button" class="hidden">Próxima Pergunta</button>
         </div>
 
-        <div id="end-screen" class="screen hidden">
+<div id="end-screen" class="screen hidden">
             <h1>Fim do Quiz!</h1>
             <p>Parabéns, <span id="final-username"></span>!</p>
             <p>Sua pontuação final foi: <span id="final-score"></span></p>
@@ -54,4 +55,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
