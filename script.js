@@ -22,80 +22,94 @@ let currentScore = 0;
 let currentQuestionIndex = 0;
 let timer = null;
 let wrongAnswers = []; 
-const TIME_LIMIT = 15; 
+const TIME_LIMIT = 20; // Aumentado para 20s devido à complexidade acadêmica
 
-// Banco de Dados com 10 questões por tema (Grade UFF)
+// Banco de Dados Atualizado (Foco em Brasil Império e Historiografia - Grade UFF)
 const quizQuestions = {
     historia_brasil2: [
         {
-            question: "A Lei de Terras de 1850 no Brasil visava:",
-            answers: ["Facilitar o acesso de imigrantes à terra", "Tornar a compra a única forma de acesso à terra", "Distribuir terras para ex-escravizados", "Extinguir o latifúndio monocultor"],
-            correct: "Tornar a compra a única forma de acesso à terra",
-            explanation: "Num contexto de fim do tráfico negreiro, a elite garantiu que a terra continuasse concentrada, impedindo o acesso de trabalhadores pobres.",
-            source: "http://www.planalto.gov.br/ccivil_03/leis/l0601-1850.htm"
+            question: "A Constituição de 1824 estabeleceu o Poder Moderador. Qual era sua função principal segundo a teoria de Benjamin Constant adaptada por D. Pedro I?",
+            answers: ["Garantir a harmonia entre os poderes como um 'mecanismo de equilíbrio'", "Submeter o Executivo às decisões do Legislativo", "Promover a descentralização administrativa das províncias", "Extinguir a vitaliciedade do Senado"],
+            correct: "Garantir a harmonia entre os poderes como um 'mecanismo de equilíbrio'",
+            explanation: "Na prática, o Poder Moderador dava ao Imperador autoridade sobre os demais poderes, sendo a chave da organização política imperial.",
+            source: "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao24.htm"
         },
         {
-            question: "A 'Questão Christie' (1862-1865) envolveu o Brasil e qual país?",
-            answers: ["França", "Estados Unidos", "Inglaterra", "Paraguai"],
-            correct: "Inglaterra",
-            explanation: "Foi um incidente diplomático causado por pressões inglesas sobre o tráfico negreiro e soberania brasileira.",
-            source: "https://drive.google.com/file/d/1vuexpqoxvStnBBu5l2a-rLcdN8lrwsGl/view?usp=sharing"
+            question: "A Confederação do Equador (1824) foi uma reação direta a qual medida de D. Pedro I?",
+            answers: ["A outorga da Constituição e o fechamento da Constituinte", "A abdicação do trono em favor de D. Maria da Glória", "A assinatura do Tratado de Aliança e Amizade com a Inglaterra", "A criação da Guarda Nacional"],
+            correct: "A outorga da Constituição e o fechamento da Constituinte",
+            explanation: "O autoritarismo do Imperador e a centralização do poder no Rio de Janeiro provocaram a revolta republicana no Nordeste.",
+            source: "https://mundoeducacao.uol.com.br/historiadobrasil/confederacao-equador.htm"
         },
         {
-            question: "O movimento de Canudos (1896-1897) foi liderado por:",
-            answers: ["Padre Cícero", "Antônio Conselheiro", "João Cândido", "Lampião"],
-            correct: "Antônio Conselheiro",
-            explanation: "Um movimento messiânico que questionava a República e a opressão dos latifundiários no sertão baiano.",
-            source: "https://cpdoc.fgv.br/sites/default/files/verbetes/primeira-republica/CANUDOS_GUERRA_DE.pdf"
+            question: "Durante o Período Regencial, o Ato Adicional de 1834 representou:",
+            answers: ["Uma experiência descentralizadora e federalista", "O fortalecimento imediato do Poder Moderador", "A criação do parlamentarismo às avessas", "A proibição do tráfico negreiro"],
+            correct: "Uma experiência descentralizadora e federalista",
+            explanation: "O Ato criou as Assembleias Legislativas Provinciais, dando maior autonomia local antes do 'Regresso' conservador.",
+            source: "https://brasilescola.uol.com.br/historiab/ato-adicional-1834.htm"
         },
         {
-            question: "Qual o objetivo do 'Convênio de Taubaté' em 1906?",
-            answers: ["Industrializar o Brasil", "Valorizar o preço do café via compra estatal", "Criar o salário mínimo", "Modernizar os portos"],
-            correct: "Valorizar o preço do café via compra estatal",
-            explanation: "As oligarquias cafeeiras usaram o Estado para garantir seus lucros em momentos de superprodução.",
-            source: "https://brasilescola.uol.com.br/historiab/convenio-taubate.htm"
+            question: "Qual foi a principal característica social da Revolta dos Malês (1835) em Salvador?",
+            answers: ["Foi liderada por escravizados de origem islâmica que sabiam ler e escrever", "Buscava a manutenção da monarquia constitucional", "Tinha como objetivo a expulsão dos imigrantes europeus", "Foi um movimento da elite contra o centralismo regencial"],
+            correct: "Foi liderada por escravizados de origem islâmica que sabiam ler e escrever",
+            explanation: "Os Malês utilizaram o árabe para organizar o levante, sendo o maior movimento de resistência escrava urbana no Brasil.",
+            source: "https://www.gov.br/palmares/pt-br/assuntos/noticias/revolta-dos-males-um-levante-contra-a-escravidao-na-bahia"
         },
         {
-            question: "A Revolução de 1930 marcou o fim de qual período?",
-            answers: ["Brasil Império", "República Velha", "Estado Novo", "Ditadura Militar"],
-            correct: "República Velha",
-            explanation: "Marcou a queda da hegemonia paulista e o início da Era Vargas.",
-            source: "https://brasilescola.uol.com.br/o-que-e/historia/o-que-foi-revolucao-1930.htm"
+            question: "A Lei de Terras (1850) foi aprovada quase simultaneamente à Lei Eusébio de Queirós. A correlação entre elas explica-se por:",
+            answers: ["Impedir que imigrantes e ex-escravizados tivessem acesso fácil à terra após o fim do tráfico", "Distribuir terras devolutas para colonos pobres", "Acabar com o regime de sesmarias para favorecer a reforma agrária", "Facilitar a compra de terras por escravos libertos"],
+            correct: "Impedir que imigrantes e ex-escravizados tivessem acesso fácil à terra após o fim do tráfico",
+            explanation: "Com o fim do tráfico, a terra tornou-se o novo mecanismo de controle social da elite latifundiária.",
+            source: "https://www.jusbrasil.com.br/artigos/a-lei-de-terras-de-1850-e-sua-relacao-com-a-questao-fundiaria-no-brasil/838743929"
         },
         {
-            question: "O que foi a 'Intentona Comunista' de 1935?",
-            answers: ["Um golpe militar vitorioso", "Um levante liderado pela Aliança Nacional Libertadora", "Uma reforma agrária de Vargas", "O início da Guerra Fria"],
-            correct: "Um levante liderado pela Aliança Nacional Libertadora",
-            explanation: "Tentativa de derrubar Vargas, servindo de pretexto para a radicalização que levou ao Estado Novo.",
-            source: "https://cpdoc.fgv.br/producao/dossies/AEraVargas1/anos30-37/RadicalizacaoPolitica/IntentonaComunista"
+            question: "O sistema de 'Parlamentarismo às Avessas' no Segundo Reinado caracterizava-se por:",
+            answers: ["O Imperador nomear o Presidente do Conselho antes das eleições legislativas", "O Parlamento ter o poder de destituir o Imperador a qualquer momento", "A inexistência da figura do Primeiro-Ministro", "O controle total da Igreja Católica sobre as decisões do Senado"],
+            correct: "O Imperador nomear o Presidente do Conselho antes das eleições legislativas",
+            explanation: "Diferente do modelo inglês, no Brasil o Poder Moderador garantia que o Executivo moldasse o Legislativo através de eleições fraudulentas.",
+            source: "https://www.historiadobrasil.net/resumos/parlamentarismo_as_avessas.htm"
         },
         {
-            question: "Qual era o lema do governo Juscelino Kubitschek?",
-            answers: ["Brasil: ame-o ou deixe-o", "50 anos em 5", "Ordem e Progresso", "Tudo pelo Social"],
-            correct: "50 anos em 5",
-            explanation: "Focava no desenvolvimentismo industrial e na construção de Brasília.",
-            source: "https://brasilescola.uol.com.br/historiab/juscelino-kubitschek.htm"
+            question: "A Guerra do Paraguai (1864-1870) teve como uma de suas consequências políticas para o Império:",
+            answers: ["O fortalecimento do Exército como ator político e o crescimento do abolicionismo", "A consolidação imediata da monarquia por mais 50 anos", "A entrega da província do Rio Grande do Sul ao Uruguai", "O fim do endividamento brasileiro com bancos ingleses"],
+            correct: "O fortalecimento do Exército como ator político e o crescimento do abolicionismo",
+            explanation: "O contato de soldados com repúblicas e escravizados que lutaram na guerra gerou uma crise de legitimidade da monarquia.",
+            source: "https://www.todamateria.com.br/guerra-do-paraguai/"
         },
         {
-            question: "O Ato Institucional nº 5 (AI-5) foi baixado em qual governo?",
-            answers: ["Castelo Branco", "Costa e Silva", "Emílio Médici", "Ernesto Geisel"],
-            correct: "Costa e Silva",
-            explanation: "Em 1968, marcou o início dos anos de chumbo, fechando o Congresso e suspendendo o habeas corpus.",
-            source: "https://www.fgv.br/cpdoc/acervo/dicionario-pelas-fotos/ai-5"
+            question: "O 'Baile da Ilha Fiscal' (1889) ficou marcado na historiografia como:",
+            answers: ["A última grande festa da monarquia dias antes da Proclamação da República", "O local onde foi assinada a Lei Áurea", "A comemoração pela vitória na Guerra do Paraguai", "O encontro que uniu monarquistas e republicanos"],
+            correct: "A última grande festa da monarquia dias antes da Proclamação da República",
+            explanation: "O evento simbolizou o isolamento da elite imperial frente à crise política que culminaria no golpe republicano.",
+            source: "https://aventurasnahistoria.com.br/noticias/almanaque/ultima-festa-do-imperio-o-que-foi-o-baile-da-ilha-fiscal.phtml"
         },
         {
-            question: "As 'Diretas Já' (1983-1984) pediam a aprovação de qual emenda?",
-            answers: ["Emenda Dante de Oliveira", "Emenda Lacerda", "Ato Adicional", "Constituição de 1988"],
-            correct: "Emenda Dante de Oliveira",
-            explanation: "Mobilizou milhões de brasileiros pelo voto direto para Presidente.",
-            source: "https://infograficos.camara.leg.br/historia-e-fotos-da-campanha-diretas-ja-que-fez-40-anos/"
+            question: "A Questão Christie (1862) exemplifica as tensões entre Brasil e Inglaterra relacionadas a:",
+            answers: ["Soberania nacional e o cumprimento dos tratados de fim do tráfico negreiro", "A disputa pela posse da região da Cisplatina", "O controle das minas de ouro em Minas Gerais", "A influência inglesa na Revolução Farroupilha"],
+            correct: "Soberania nacional e o cumprimento dos tratados de fim do tráfico negreiro",
+            explanation: "O rompimento diplomático mostrou a resistência brasileira às pressões britânicas sobre o tráfico e incidentes marítimos.",
+            source: "https://brasilescola.uol.com.br/historiab/questao-christie.htm"
         },
         {
-            question: "O Plano Real foi implementado sob a liderança de qual ministro?",
-            answers: ["Delfim Netto", "Fernando Henrique Cardoso", "Guido Mantega", "Dilma Rousseff"],
-            correct: "Fernando Henrique Cardoso",
-            explanation: "No governo Itamar Franco, estabilizou a economia e acabou com a hiperinflação.",
-            source: "https://mundoeducacao.uol.com.br/historiab/plano-real.htm"
+            question: "O movimento abolicionista, a partir da década de 1880, diferenciou-se por:",
+            answers: ["Contar com a participação ativa de intelectuais negros, jornalistas e ações de desobediência civil", "Ser um movimento puramente parlamentar e restrito às elites", "Defender a indenização dos proprietários de escravos", "Ser liderado exclusivamente pela Princesa Isabel"],
+            correct: "Contar com a participação ativa de intelectuais negros, jornalistas e ações de desobediência civil",
+            explanation: "Nomes como José do Patrocínio, André Rebouças e Luiz Gama deram um caráter popular e combativo ao movimento.",
+            source: "https://anpuh.org.br/uploads/anais-simposios/pdf/2019-01/1548875176_97b8cb5603c40377de3d58bb9f458af5.pdf"
+        },
+        {
+            question: "A Tarifa Alves Branco (1844) teve como impacto na economia imperial:",
+            answers: ["O protecionismo alfandegário que estimulou os primeiros surtos industriais (Barão de Mauá)", "A redução total dos impostos sobre produtos ingleses", "O fim da exportação de café para a Europa", "A criação da primeira moeda única da América Latina"],
+            correct: "O protecionismo alfandegário que estimulou os primeiros surtos industriais (Barão de Mauá)",
+            explanation: "Ao aumentar as taxas de importação, o governo buscou equilibrar as contas e acabou favorecendo investimentos internos.",
+            source: "https://mundoeducacao.uol.com.br/historiadobrasil/a-tarifa-alves-branco.htm"
+        },
+        {
+            question: "A 'Crise Religiosa' da década de 1870, fator de queda da monarquia, envolveu:",
+            answers: ["O conflito entre o Imperador (Padroado) e a Igreja sobre a influência da Maçonaria", "A tentativa de D. Pedro II de transformar o Brasil em um país protestante", "A proibição de cultos africanos nas fazendas de café", "A expulsão dos Jesuítas do território nacional"],
+            correct: "O conflito entre o Imperador (Padroado) e a Igreja sobre a influência da Maçonaria",
+            explanation: "O governo imperial não aceitou as bulas papais contra maçons, gerando a prisão de bispos e a perda de apoio da Igreja.",
+            source: "https://www12.senado.leg.br/noticias/especiais/arquivo-s/trono-altar-questao-religiosa-teve-prisao-de-bispos-e-enfraqueceu-imperio"
         }
     ],
 
@@ -137,8 +151,8 @@ const quizQuestions = {
         },
         {
             question: "Para o Marxismo, a base da sociedade (Infraestrutura) é:",
-            answers: ["A religião", "A economia e os modos de produção", "As leis", "A filosofia"],
-            correct: "A economia e os modos de produção",
+            answers: ["A religião", "A economy e os modos de produção", "As leis", "A filosofia"],
+            correct: "A economy e os modos de produção",
             explanation: "As relações materiais determinam as formas de consciência e política (Superestrutura).",
             source: "https://cafecomsociologia.com/infraestrutura-e-superestrutura-em-marx/"
         },
@@ -147,8 +161,7 @@ const quizQuestions = {
             answers: ["Primeira", "Segunda", "Terceira", "Quarta"],
             correct: "Terceira",
             explanation: "Focou nas percepções, imaginários e cotidiano das populações.",
-            source: "https://pt.wikipedia.org/wiki/Escola_dos_Annales",
-            source: "https://www.youtube.com/watch?v=hGA67lxUS_A&t=79s"
+            source: "https://pt.wikipedia.org/wiki/Escola_dos_Annales"
         },
         {
             question: "Quem defende que o 'Gênero' é uma categoria útil de análise histórica?",
@@ -170,13 +183,32 @@ const quizQuestions = {
             correct: "Marc Bloch",
             explanation: "Um estudo magistral sobre as estruturas sociais e mentais da Idade Média.",
             source: "https://pt.wikipedia.org/wiki/Marc_Bloch"
+        },
+        {
+            question: "O conceito de 'Invenção das Tradições' foi popularizado por:",
+            answers: ["Eric Hobsbawm", "Ferdinand Saussure", "Benedict Anderson", "Roger Chartier"],
+            correct: "Eric Hobsbawm",
+            explanation: "Analisa como rituais e símbolos 'antigos' são criados recentemente para forjar identidades nacionais.",
+            source: "https://pt.wikipedia.org/wiki/A_Inven%C3%A7%C3%A3o_das_Tradi%C3%A7%C3%B5es"
+        },
+        {
+            question: "Edward P. Thompson, na historiografia inglesa, é referência em:",
+            answers: ["Cultura operária e 'História vista de baixo'", "Estatística demográfica pura", "História dos grandes reis e generais", "Arqueologia medieval"],
+            correct: "Cultura operária e 'História vista de baixo'",
+            explanation: "Em 'A Formação da Classe Operária Inglesa', ele foca na experiência e agência dos trabalhadores.",
+            source: "https://pt.wikipedia.org/wiki/E._P._Thompson"
         }
-    ]
+    ],
+    // Temas vazios para não dar erro ao clicar, caso mantenha os botões
+    historia_africa: [], 
+    historia_america1: [],
+    historia_brasil1: [],
+    geohistoria: []
 };
 
 // Funções do Motor do Jogo
 function shuffleArray(array) {
-    if (!array) return [];
+    if (!array || array.length === 0) return [];
     const newArray = [...array];
     for (let i = newArray.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -188,7 +220,9 @@ function shuffleArray(array) {
 function startQuiz(theme) {
     const username = usernameInput.value.trim();
     if (username === '') { alert('Digite seu nome!'); return; }
-    if (!quizQuestions[theme]) { alert('Tema não encontrado!'); return; }
+    if (!quizQuestions[theme] || quizQuestions[theme].length === 0) { 
+        alert('Tema ainda não configurado com as novas questões!'); return; 
+    }
 
     currentUsername = username;
     currentTheme = theme;
@@ -203,6 +237,7 @@ function startQuiz(theme) {
     userInfo.textContent = `Aluno(a): ${currentUsername} | Tema: ${currentTheme.replace('_', ' ').toUpperCase()}`;
     scoreDisplay.textContent = `Pontuação: ${currentScore}`;
     
+    // Sorteia as questões do tema escolhido
     quizQuestions[currentTheme] = shuffleArray(quizQuestions[currentTheme]);
     showQuestion();
 }
@@ -212,7 +247,8 @@ function showQuestion() {
     const questionData = quizQuestions[currentTheme][currentQuestionIndex];
     questionText.textContent = questionData.question;
 
-    shuffleArray(questionData.answers).forEach(answer => {
+    const shuffledAnswers = shuffleArray(questionData.answers);
+    shuffledAnswers.forEach(answer => {
         const button = document.createElement('button');
         button.textContent = answer;
         button.classList.add('answer-button');
@@ -248,7 +284,7 @@ function showFeedback(correct, explanation, source) {
     let link = source ? `<br><a href="${source}" target="_blank" style="color: #ffcc00; font-weight: bold; text-decoration: underline;">🔍 Consultar Fonte Acadêmica</a>` : "";
     feedbackContainer.innerHTML = `
         <div style="background: rgba(255, 255, 255, 0.1); padding: 10px; border-radius: 5px; margin-top: 10px;">
-            <p><strong>Correta:</strong> ${correct}</p>
+            <p><strong>Resposta Correta:</strong> ${correct}</p>
             <p>${explanation}</p>
             ${link}
         </div>
@@ -270,7 +306,7 @@ function startTimer() {
         if (timeLeft <= 0) {
             clearInterval(timer);
             const q = quizQuestions[currentTheme][currentQuestionIndex];
-            selectAnswer('Esgotado', q.correct, q.explanation, q.source);
+            selectAnswer('Tempo Esgotado', q.correct, q.explanation, q.source);
         }
     }, 1000);
 }
@@ -293,17 +329,34 @@ function endQuiz() {
     const reviewArea = document.getElementById('review-area');
     const reviewList = document.getElementById('review-list');
     
+    // --- ALTERAÇÃO AQUI: Adição do GIF de Vencedor (John Snow) ---
+    // Remove GIF antigo se existir (garante limpeza)
+    const oldGif = document.getElementById('win-gif');
+    if (oldGif) oldGif.remove();
+
+    const gifContainer = document.createElement('div');
+    gifContainer.id = "win-gif";
+    gifContainer.style.margin = "20px 0";
+    
+    // GIF do John Snow piscando/aprovando
+    gifContainer.innerHTML = `<img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMXZ4MHU2Y2xwNnl6b2d2MTBjc3VsZTZvMGh3Y3h3NzVuZXp2dDBoeiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/has1WKhoorwLS/giphy.webp" alt="John Snow Approves" style="width: 100%; max-width: 300px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">`;
+    
+    // Insere o GIF antes do botão de reiniciar
+    endScreen.insertBefore(gifContainer, restartButton);
+    // -------------------------------------------------------------
+
     if (wrongAnswers.length > 0) {
         reviewArea.classList.remove('hidden');
         reviewList.innerHTML = wrongAnswers.map(item => `
-            <div style="border-bottom: 1px solid #666; padding: 10px 0;">
+            <div style="border-bottom: 1px solid #666; padding: 10px 0; text-align: left;">
                 <p><strong>Questão:</strong> ${item.q}</p>
-                <p><strong>Resposta Correta:</strong> ${item.correct}</p>
+                <p><strong>Correta:</strong> ${item.correct}</p>
                 <a href="${item.src}" target="_blank" style="color: #00e676;">Estudar mais sobre isso</a>
             </div>
         `).join('');
     } else {
         reviewArea.classList.add('hidden');
+        reviewList.innerHTML = "<p>Incrível! Você gabaritou!</p>";
     }
 }
 
@@ -311,6 +364,7 @@ function restartGame() {
     location.reload(); // Recarrega para limpar tudo
 }
 
+// Event Listeners
 themeButtons.forEach(button => {
     button.addEventListener('click', () => startQuiz(button.dataset.theme));
 });
